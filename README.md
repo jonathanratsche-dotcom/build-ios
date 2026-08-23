@@ -97,6 +97,8 @@ Did you add double quotes around the file path?
 ### Edit IPA not working
 Did you place your pck file in the same directory as your ipa file?
 
+### Other issues
+Did you add spaces in the Xcodeproject file name?
 
 ## Privacy Policy
 - I don't collect any data from this project.
