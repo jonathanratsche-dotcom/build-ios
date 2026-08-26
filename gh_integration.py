@@ -87,7 +87,7 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
 
             if not overwrite:
                 print("Aborted.")
-                quit()
+                sys.exit(1)
 
             print(f"Deleting {REPO_NAME} folder and cloning {GH_USERNAME}/{REPO_NAME}!")
 
@@ -105,7 +105,7 @@ def create_and_clone_and_change_and_push_and_build(xcproj_link: str, project_nam
 
             if not overwrite:
                 print("Aborted.")
-                quit()
+                sys.exit(0)
 
             print(f"Deleting {REPO_NAME} folder and creating {GH_USERNAME}/{REPO_NAME}!")
             shutil.rmtree(REPO_NAME)

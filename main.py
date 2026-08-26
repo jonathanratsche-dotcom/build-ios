@@ -85,7 +85,7 @@ def create_new_ipa() -> str:
             continue
         except exceptions.ApiError:
             print("There was an API error. Perhaps try deleting the previous upload from dropbox?")
-            quit()
+            sys.exit(1)
 
     # Cleanup
     os.remove("tempxcodeproject.zip")
@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
     if mode == "Edit IPA":
         edit_ipa()
-        quit()
+        sys.exit(0)
     elif mode == "Create new IPA":
         link = create_new_ipa()
 
@@ -126,7 +126,7 @@ if __name__ == "__main__":
         ).get("ans")  # type: ignore
         if not confirmation:
             print("Quitting! You can manually build iirmt later on your GitHub repo.")
-            quit()
+            sys.exit(0)
 
         print("Proceeding to the GitHub step!")
 
