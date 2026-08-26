@@ -1,11 +1,11 @@
-from dotenv import load_dotenv
-import subprocess
+import os
 import shutil
 import stat
-import os
+import subprocess
 import sys
-import inquirer as inq
 
+import inquirer as inq
+from dotenv import load_dotenv
 
 load_dotenv()
 GH_USERNAME = os.getenv("GH_USERNAME")

@@ -1,17 +1,16 @@
+import os
+import platform
+import shutil
+import sys
+import uuid
+
+import dotenv
 import inquirer as inq
 from dropbox import exceptions
 
 from dbx_integration import upload_file
-from ipa_editor import replace_pck
 from gh_integration import create_and_clone_and_change_and_push_and_build
-
-import shutil
-import os
-import platform
-import sys
-import dotenv
-import uuid
-
+from ipa_editor import replace_pck
 
 dotenv.load_dotenv()
 IPA = os.getenv("IPA")

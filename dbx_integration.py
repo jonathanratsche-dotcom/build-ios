@@ -1,8 +1,8 @@
+import os
+import sys
+
 import dropbox
 from dotenv import load_dotenv
-import sys
-import os
-
 
 load_dotenv()
 
