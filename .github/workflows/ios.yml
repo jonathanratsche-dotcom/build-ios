@@ -10,7 +10,7 @@ jobs:
       
       - name: Setup Godot 4.3
         run: |
-          curl -LO https://github.com
+          wget https://github.com
           unzip Godot_v4.3-stable_macos.universal.zip
           
       - name: Export Project to IPA
