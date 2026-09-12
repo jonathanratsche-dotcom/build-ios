@@ -4,24 +4,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
       
-      - name: Install Godot 4.3
-        run: |
-          mkdir -p build/ios
-          wget https://github.com
-          unzip Godot_v4.3-stable_linux.x86_64.zip
-          mv Godot_v4.3-stable_linux.x86_64 godot
+      - name: Setup Godot 4.3
+        uses: shogo82148/actions-setup-godot@v1
+        with:
+          godot-version: '4.3'
           
       - name: Export Project to IPA
         run: |
-          ./godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
+          mkdir -p build/ios
+          godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-build
           path: build/ios/
+
 
