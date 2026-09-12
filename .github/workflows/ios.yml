@@ -1,29 +1,23 @@
 name: Build iOS
 on:
   workflow_dispatch:
-    inputs:
-      godot_version:
-        description: 'Godot Version'
-        required: true
-        default: '4.3'
-      export_preset:
-        description: 'Export Preset Name'
-        required: true
-        default: 'iOS'
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Godot
+      
+      - name: Setup Godot 4.3
         run: |
-          curl -LO https://github.com{{ github.event.inputs.godot_version }}-stable/Godot_v${{ github.event.inputs.godot_version }}-stable_macos.universal.zip
-          unzip Godot_v${{ github.event.inputs.godot_version }}-stable_macos.universal.zip
-      - name: Export Project
+          curl -LO https://github.com
+          unzip Godot_v4.3-stable_macos.universal.zip
+          
+      - name: Export Project to IPA
         run: |
           mkdir -p build/ios
-          ./Godot.app/Contents/MacOS/Godot --headless --export-release "${{ github.event.inputs.export_preset }}" build/ios/JumpingKnight.ipa
+          ./Godot.app/Contents/MacOS/Godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
+          
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
