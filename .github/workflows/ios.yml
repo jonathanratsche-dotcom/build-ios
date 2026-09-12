@@ -8,15 +8,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Download Godot
-        run: |
-          mkdir -p build/ios
-          curl -L -o godot.zip "https://tuxfamily.org"
-          unzip godot.zip
+      - name: Setup Godot 4.3
+        uses: amir-s/setup-godot@v1
+        with:
+          version: '4.3'
           
       - name: Export Project to IPA
         run: |
-          ./Godot.app/Contents/MacOS/Godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
+          mkdir -p build/ios
+          godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
