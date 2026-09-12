@@ -4,26 +4,28 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
-      - name: Checkout Code
+      - name: Checkout Source
         uses: actions/checkout@v4
-      
-      - name: Install Godot 4.3
+
+      - name: Install Tools
+        run: brew install wget
+
+      - name: Download Godot Stable
         run: |
           mkdir -p build/ios
-          sudo apt-get update && sudo apt-get install -y wget unzip
-          wget https://tuxfamily.org
-          unzip Godot_v4.3-stable_linux.x86_64.zip
-          mv Godot_v4.3-stable_linux.x86_64 godot
-          
-      - name: Export Project
+          wget -q https://github.com
+          unzip -q Godot_v4.3-stable_macos.universal.zip
+
+      - name: Export Godot Project
         run: |
-          ./godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
-          
-      - name: Upload App
+          ./Godot.app/Contents/MacOS/Godot --headless --export-release "iOS" build/ios/JumpingKnight.ipa
+
+      - name: Save IPA File
         uses: actions/upload-artifact@v4
         with:
           name: ios-build
           path: build/ios/
+
 
